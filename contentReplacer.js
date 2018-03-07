@@ -33,7 +33,7 @@ var content = {
 function replacer(content, utm) {
     if (utm in content) {
         for (i in content[utm]) {
-        	document.querySelector(content[utm][i]['selector']).innerHTML=content[utm][i]['content'];
+        	if(document.querySelector(content[utm][i]['selector'])!=null) {document.querySelector(content[utm][i]['selector']).innerHTML=content[utm][i]['content'];};
         };
     } else {
         console.log("Каталог контента не имеет такой utm метки");
