@@ -4,27 +4,32 @@ var content = {
     coctail: [
     	{
     	selector: '#manager > div > div.title > div',
-    	content: 'Сашка доволен доволен тобой!'
+    	content: 'Сашка доволен доволен тобой!',
+        url: /.*/i
     	},
     	{
     	selector: '#manager > div > div.entry',
-    	content: '<img width="420" alt="Коктели" src="/upload/medialibrary/f47/f47abc04c6893dbb6044bd7921ff75ac.jpg" height="67" title="Коктели">'
+    	content: '<img width="420" alt="Коктели" src="/upload/medialibrary/f47/f47abc04c6893dbb6044bd7921ff75ac.jpg" height="67" title="Коктели">',
+        url: /.*/i
     	}
     ],
     moscow: [
         {
         selector: '#towns > div',
-        content: 'Московский номер'
+        content: 'Московский номер',
+        url: /.*/i
         },
         {
         selector: '#manager > div > div.title > div',
-        content: 'Московская версия сайта'
+        content: 'Московская версия сайта',
+        url: /.*/i
         }
     ],
     headline: [
         {
         selector: '#manager > div > div.title > div',
-        content: 'Заменяется только заголовок'
+        content: 'Заменяется только заголовок',
+        url: /.*/i
         }
     ]
 };
@@ -33,7 +38,7 @@ var content = {
 function replacer(content, utm) {
     if (utm in content) {
         for (i in content[utm]) {
-        	if(document.querySelector(content[utm][i]['selector'])!=null) {document.querySelector(content[utm][i]['selector']).innerHTML=content[utm][i]['content'];};
+        	if(document.querySelector(content[utm][i]['selector'])!=null && document.URL.match(content[utm][i]['url'])) {document.querySelector(content[utm][i]['selector']).innerHTML=content[utm][i]['content'];};
         };
     } else {
         console.log("Каталог контента не имеет такой utm метки");
